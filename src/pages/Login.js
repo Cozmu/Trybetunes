@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Carregando from './Carregando';
 
@@ -35,28 +36,33 @@ class Login extends React.Component {
     return (
       <div data-testid="page-login">
         {loading ? <Carregando />
-          : <div>
-            <label htmlFor="name-input">
-              <input
-                id="name-input"
-                name="usuario"
-                data-testid="login-name-input"
-                onChange={ this.onInputChange }
-                value={ usuario }
-              />
-            </label>
-            <button
-              type="button"
-              data-testid="login-submit-button"
-              disabled={ license }
-              onClick={ this.submite }
-            >
-              Entrar
-            </button>
-            </div>}
+          : (
+            <form>
+              <label htmlFor="name-input">
+                <input
+                  id="name-input"
+                  name="usuario"
+                  data-testid="login-name-input"
+                  onChange={ this.onInputChange }
+                  value={ usuario }
+                />
+              </label>
+              <button
+                type="button"
+                data-testid="login-submit-button"
+                disabled={ license }
+                onClick={ this.submite }
+              >
+                Entrar
+              </button>
+            </form>)}
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.func.isRequired,
+};
 
 export default Login;
