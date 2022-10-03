@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Carregando from '../pages/Carregando';
 
@@ -20,7 +21,22 @@ class Header extends React.Component {
     const { loading, usuario } = this.state;
     return (
       <header data-testid="header-component">
-        {loading ? <Carregando /> : <p data-testid="header-user-name">{ usuario }</p>}
+        {loading ? <Carregando />
+          : (
+            <div>
+              <nav>
+                <NavLink data-testid="link-to-search" to="/search">
+                  Pesquisa
+                </NavLink>
+                <NavLink data-testid="link-to-favorites" to="/favorites">
+                  Favoritas
+                </NavLink>
+                <NavLink data-testid="link-to-profile" to="/profile">
+                  Perfil
+                </NavLink>
+              </nav>
+              <p data-testid="header-user-name">{ usuario }</p>
+            </div>)}
       </header>
     );
   }
