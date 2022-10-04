@@ -51,7 +51,7 @@ class Search extends React.Component {
           >
             <Link
               data-testid={ `link-to-album-${element.collectionId}` }
-              to="/album/101" // trocar 101 por :id
+              to={ `/album/${element.collectionId}` }
             >
               {JSON.stringify(element)}
             </Link>
