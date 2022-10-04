@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Carregando from './Carregando';
@@ -8,8 +9,8 @@ class Search extends React.Component {
     licenseBtn: true,
     artistName: '',
     loading: false,
-    fraseDeBusca: 
-    // songs: [],
+    songs: [],
+    name: '',
   };
 
   enableBtn = () => {
@@ -28,44 +29,62 @@ class Search extends React.Component {
   searchArtist = async () => {
     const { artistName } = this.state;
     this.setState({
-      artistName: '',
+      name: artistName,
       loading: true,
+      artistName: '',
     });
     const request = await searchAlbumsAPI(artistName);
     this.setState({
       loading: false,
       songs: request,
     });
-    console.log(request);
   };
 
   render() {
-    const { licenseBtn, artistName, loading, songs } = this.state;
+    const { licenseBtn, artistName, loading, songs, name } = this.state;
+    const filter = (
+      <>
+        <h2>{`Resultado de álbuns de: ${name}`}</h2>
+        {songs.map((element, i) => (
+          <ul
+            key={ i }
+          >
+            <Link
+              data-testid={ `link-to-album-${element.collectionId}` }
+              to="/album/101" // trocar 101 por :id
+            >
+              {JSON.stringify(element)}
+            </Link>
+          </ul>))}
+      </>);
+    const notFound = <span>Nenhum álbum foi encontrado</span>;
+    const checkExistence = (songs.length > 0) ? filter : notFound;
+
     return (
       <div data-testid="page-search">
         <Header />
-        { loading ? <Carregando />
-          : (
-            <form>
-              <label htmlFor="search-artist">
-                <input
-                  id="search-artist"
-                  type="text"
-                  name="artistName"
-                  value={ artistName }
-                  data-testid="search-artist-input"
-                  onChange={ this.onInputChange }
-                />
-              </label>
-              <button
-                data-testid="search-artist-button"
-                type="button"
-                onClick={ this.searchArtist }
-                disabled={ licenseBtn }
-              >
-                Pesquisar
-              </button>
-            </form>)}
+        <form>
+          <label htmlFor="search-artist">
+            <input
+              id="search-artist"
+              type="text"
+              name="artistName"
+              value={ artistName }
+              data-testid="search-artist-input"
+              onChange={ this.onInputChange }
+            />
+          </label>
+          <button
+            data-testid="search-artist-button"
+            type="button"
+            onClick={ this.searchArtist }
+            disabled={ licenseBtn }
+          >
+            Pesquisar
+          </button>
+        </form>
+        { loading ? <Carregando /> : checkExistence}
+
       </div>
     );
   }
