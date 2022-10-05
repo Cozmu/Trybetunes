@@ -1,37 +1,60 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carregando from '../pages/Carregando';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {
     isloading: false,
     checked: false,
+    favorite: [],
   };
 
-  verifica = (mscFavorita) => {
-    const { favorite } = this.props;
-    return favorite.some((element) => element.trackId === mscFavorita.trackId);
-  };
-
-  favoriteSong = async (e) => {
-    // console.log(e);
-    if (this.verifica(e)) {
-      this.setState({ isloading: true });
-      await removeSong(e);
+  async componentDidMount() {
+    const favoriteRequest = await getFavoriteSongs();
+    const { trackId } = this.props;
+    const estaLocal = favoriteRequest.find((e) => e.trackId === trackId);
+    if (estaLocal) {
       this.setState({
+        checked: true,
+      });
+    }
+    // console.log(favoriteRequest);
+    this.setState({
+      favorite: favoriteRequest,
+    });
+    this.verifcaLocalStorage();
+  }
+
+  verifcaLocalStorage = (param) => {
+    const { favorite } = this.state;
+    // const prop = this.props;
+    const verifica = favorite.some((element) => element.trackId === param);
+    return verifica;
+  };
+
+  favoriteSong = async () => {
+    const prop = this.props;
+    const { favorite } = this.state;
+    if (this.verifcaLocalStorage(prop.trackId)) {
+      // console.log('teste');
+      this.setState({ isloading: true });
+      await removeSong(prop);
+      const novoFavorito = favorite.filter((e) => e.trackId !== prop.trackId);
+      this.setState({
+        favorite: novoFavorito,
         isloading: false,
         checked: false,
       });
     } else {
-      this.setState({
-        isloading: true,
-      });
-      await addSong(e);
-      this.setState({
+    // console.log(prop);
+      this.setState({ isloading: true });
+      await addSong(prop);
+      this.setState((prev) => ({
+        favorite: [...prev.favorite, prop],
         isloading: false,
         checked: true,
-      });
+      }));
     }
   };
 
@@ -62,8 +85,8 @@ class MusicCard extends React.Component {
                 name="favorita"
                 id="favorita"
                 type="checkbox"
-                onClick={ () => this.favoriteSong(this.props) }
-                defaltChecked={ checked }
+                onClick={ this.favoriteSong }
+                checked={ checked }
               />
             </label>
           </section>
