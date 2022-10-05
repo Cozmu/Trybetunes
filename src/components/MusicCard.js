@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carregando from '../pages/Carregando';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {
@@ -9,15 +9,30 @@ class MusicCard extends React.Component {
     checked: false,
   };
 
-  favoriteSong = async () => {
-    this.setState({
-      isloading: true,
-    });
-    await addSong();
-    this.setState({
-      isloading: false,
-      checked: true,
-    });
+  verifica = (mscFavorita) => {
+    const { favorite } = this.props;
+    return favorite.some((element) => element.trackId === mscFavorita.trackId);
+  };
+
+  favoriteSong = async (e) => {
+    // console.log(e);
+    if (this.verifica(e)) {
+      this.setState({ isloading: true });
+      await removeSong(e);
+      this.setState({
+        isloading: false,
+        checked: false,
+      });
+    } else {
+      this.setState({
+        isloading: true,
+      });
+      await addSong(e);
+      this.setState({
+        isloading: false,
+        checked: true,
+      });
+    }
   };
 
   render() {
@@ -47,8 +62,8 @@ class MusicCard extends React.Component {
                 name="favorita"
                 id="favorita"
                 type="checkbox"
-                onClick={ this.favoriteSong }
-                defaultChecked={ checked }
+                onClick={ () => this.favoriteSong(this.props) }
+                defaltChecked={ checked }
               />
             </label>
           </section>

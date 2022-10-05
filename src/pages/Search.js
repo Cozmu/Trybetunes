@@ -42,7 +42,7 @@ class Search extends React.Component {
 
   render() {
     const { licenseBtn, artistName, loading, songs, name } = this.state;
-    const filter = (
+    const checkExistence = (songs.length > 0) ? (
       <>
         <h2>{`Resultado de álbuns de: ${name}`}</h2>
         {songs.map((element, i) => (
@@ -56,9 +56,7 @@ class Search extends React.Component {
               {JSON.stringify(element)}
             </Link>
           </ul>))}
-      </>);
-    const notFound = <span>Nenhum álbum foi encontrado</span>;
-    const checkExistence = (songs.length > 0) ? filter : notFound;
+      </>) : <span>Nenhum álbum foi encontrado</span>;
 
     return (
       <div data-testid="page-search">
