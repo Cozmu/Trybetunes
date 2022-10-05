@@ -19,7 +19,6 @@ class MusicCard extends React.Component {
         checked: true,
       });
     }
-    // console.log(favoriteRequest);
     this.setState({
       favorite: favoriteRequest,
     });
@@ -28,7 +27,6 @@ class MusicCard extends React.Component {
 
   verifcaLocalStorage = (param) => {
     const { favorite } = this.state;
-    // const prop = this.props;
     const verifica = favorite.some((element) => element.trackId === param);
     return verifica;
   };
@@ -37,7 +35,6 @@ class MusicCard extends React.Component {
     const prop = this.props;
     const { favorite } = this.state;
     if (this.verifcaLocalStorage(prop.trackId)) {
-      // console.log('teste');
       this.setState({ isloading: true });
       await removeSong(prop);
       const novoFavorito = favorite.filter((e) => e.trackId !== prop.trackId);
@@ -47,7 +44,6 @@ class MusicCard extends React.Component {
         checked: false,
       });
     } else {
-    // console.log(prop);
       this.setState({ isloading: true });
       await addSong(prop);
       this.setState((prev) => ({
