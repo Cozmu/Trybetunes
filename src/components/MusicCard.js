@@ -8,7 +8,6 @@ class MusicCard extends React.Component {
     isloading: false,
     checked: false,
     favorite: [],
-    // fav: [],
   };
 
   async componentDidMount() {
@@ -38,10 +37,8 @@ class MusicCard extends React.Component {
     if (this.verifcaLocalStorage(prop.trackId)) {
       this.setState({ isloading: true });
       await removeSong(prop);
-      // const newFavorite = prop.filter((e) => e.trackId !== favorite.trackId);
       const novoFavorito = favorite.filter((e) => e.trackId !== prop.trackId);
       this.setState({
-        // fav: newFavorite,
         favorite: novoFavorito,
         isloading: false,
         checked: false,

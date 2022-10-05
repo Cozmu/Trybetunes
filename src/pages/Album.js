@@ -30,6 +30,7 @@ class Album extends React.Component {
         <h3 data-testid="album-name">{albumName}</h3>
         {album.filter((e) => e.trackName !== undefined)
           .map((element, i) => (<MusicCard
+            // favoriteSongs={} // elevar estado e criar função que manipula ele
             key={ i }
             { ...element }
           />))}
