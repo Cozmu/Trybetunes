@@ -15,7 +15,6 @@ class Profile extends React.Component {
       isLoading: true,
     });
     const request = await getUser();
-    // console.log(request);
     this.setState({
       isLoading: false,
       userApi: [request],
@@ -24,7 +23,6 @@ class Profile extends React.Component {
 
   render() {
     const { isLoading, userApi } = this.state;
-    // console.log(typeof userApi);
     return (
       <div data-testid="page-profile">
         <Header />
