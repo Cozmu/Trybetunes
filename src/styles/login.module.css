@@ -1,0 +1,18 @@
+.main_container {
+
+  /* stylelint-disable-next-line max-line-length */
+  background: linear-gradient(158deg, rgba(0, 59, 229, 1) 26%, rgba(68, 191, 224, 1) 100%);
+  height: 100vh;
+}
+
+.form_container {
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+}
