@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import Carregando from './Carregando';
+import Carregando from '../components/Carregando';
+import style from '../styles/search.module.scss';
 
 class Search extends React.Component {
   state = {
@@ -59,29 +60,34 @@ class Search extends React.Component {
       </>) : <span>Nenhum álbum foi encontrado</span>;
 
     return (
-      <div data-testid="page-search">
+      <div
+        className={ style.main_container }
+        data-testid="page-search"
+      >
         <Header />
-        <form>
-          <label htmlFor="search-artist">
-            <input
-              id="search-artist"
-              type="text"
-              name="artistName"
-              value={ artistName }
-              data-testid="search-artist-input"
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <button
-            data-testid="search-artist-button"
-            type="button"
-            onClick={ this.searchArtist }
-            disabled={ licenseBtn }
-          >
-            Pesquisar
-          </button>
-        </form>
-        { loading ? <Carregando /> : checkExistence}
+        <section>
+          <form>
+            <label htmlFor="search-artist">
+              <input
+                id="search-artist"
+                type="text"
+                name="artistName"
+                value={ artistName }
+                data-testid="search-artist-input"
+                onChange={ this.onInputChange }
+              />
+            </label>
+            <button
+              data-testid="search-artist-button"
+              type="button"
+              onClick={ this.searchArtist }
+              disabled={ licenseBtn }
+            >
+              Pesquisar
+            </button>
+          </form>
+          { loading ? <Carregando /> : checkExistence}
+        </section>
 
       </div>
     );

@@ -1,31 +1,41 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { GrSearch } from 'react-icons/gr';
 import { getUser } from '../services/userAPI';
-import Carregando from '../pages/Carregando';
+import Carregando from './Carregando';
+import style from '../styles/header.module.scss';
+import logo from '../img/logo.png';
 
 class Header extends React.Component {
   state = {
     loading: true,
-    usuario: '',
+    userName: '',
+    userPicture: '',
   };
 
   async componentDidMount() {
     const data = await getUser();
     this.setState({
       loading: false,
-      usuario: data.name,
+      userName: data.name,
+      userPicture: data.image,
     });
   }
 
   render() {
-    const { loading, usuario } = this.state;
+    const { loading, userName, userPicture } = this.state;
     return (
-      <header data-testid="header-component">
+      <header
+        className={ style.header_container }
+        data-testid="header-component"
+      >
         {loading ? <Carregando />
           : (
-            <div>
+            <>
+              <img alt="logo" className={ style.logo } src={ logo } />
               <nav>
                 <NavLink data-testid="link-to-search" to="/search">
+                  <GrSearch />
                   Pesquisa
                 </NavLink>
                 <NavLink data-testid="link-to-favorites" to="/favorites">
@@ -35,8 +45,11 @@ class Header extends React.Component {
                   Perfil
                 </NavLink>
               </nav>
-              <p data-testid="header-user-name">{ usuario }</p>
-            </div>)}
+              <section>
+                <img src={ userPicture } alt={ userName } />
+                <p data-testid="header-user-name">{ userName }</p>
+              </section>
+            </>)}
       </header>
     );
   }
