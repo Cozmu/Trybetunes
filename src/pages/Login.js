@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Carregando from './Carregando';
-import style from '../styles/login.module.css';
+import style from '../styles/login.module.scss';
+import logo from '../img/logo.png';
 
 class Login extends React.Component {
   state = {
@@ -38,11 +39,13 @@ class Login extends React.Component {
       <div className={ style.main_container } data-testid="page-login">
         {loading ? <Carregando />
           : (
-            <form className={ style.form_container }>
+            <form>
+              <img alt="logo" src={ logo } />
               <label htmlFor="name-input">
                 <input
                   id="name-input"
                   name="usuario"
+                  placeholder="Qual e seu nome?"
                   data-testid="login-name-input"
                   onChange={ this.onInputChange }
                   value={ usuario }
@@ -54,7 +57,7 @@ class Login extends React.Component {
                 disabled={ license }
                 onClick={ this.submite }
               >
-                Entrar
+                ENTRAR
               </button>
             </form>)}
       </div>

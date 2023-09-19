@@ -1,0 +1,60 @@
+@import 'colors.scss';
+
+.main_container {
+  background: linear-gradient(158deg, $primary-bg 26%, $secondary-bg 100%);
+  height: 100vh;
+  position: relative;
+  form {
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    justify-content: center;
+    margin: 12% 25%;
+    width: 50%;
+    gap: 15px;
+    position: absolute;
+    label {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    input {
+      height: 30px;
+      border-radius: 20px;
+      padding: 5px;
+      border: 1px solid $primary-bg;
+      width: 40%;
+      text-align: center;
+      color: $primary-bg;
+      font-weight: 400;
+    }
+    input::placeholder {
+      color: $primary-bg
+    }
+    input:focus {
+      outline: 1px solid $primary-bg; 
+      background-color: #f8f8f8;
+    }
+
+    button {
+      height: 45px;
+      border-radius: 20px;
+      padding: 5px;
+      width: 41%;
+      border: none;
+      background-color: $primary-bg;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+
