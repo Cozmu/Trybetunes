@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IoPersonCircle, IoPersonCircleOutline } from 'react-icons/io5';
 import { AiOutlineSearch, AiOutlineStar } from 'react-icons/ai';
-import { CgProfile } from 'react-icons/cg';
+// import { CgProfile } from 'react-icons/cg';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 import style from '../styles/header.module.scss';
@@ -44,12 +45,14 @@ class Header extends React.Component {
                   Favoritas
                 </NavLink>
                 <NavLink data-testid="link-to-profile" to="/profile">
-                  <CgProfile className={ style.icons } />
+                  <IoPersonCircle className={ style.icons } />
                   Perfil
                 </NavLink>
               </nav>
               <section>
-                <img src={ userPicture } alt={ userName } />
+                {userPicture ? (
+                  <img src={ userPicture } alt={ userName } />
+                ) : <IoPersonCircleOutline className={ style.profile_not_found } />}
                 <p data-testid="header-user-name">{ userName }</p>
               </section>
             </>)}

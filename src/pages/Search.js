@@ -45,22 +45,26 @@ class Search extends React.Component {
   render() {
     const { licenseBtn, artistName, loading, songs, name } = this.state;
     const checkExistence = (songs.length > 0) ? (
-      <>
+      <div className={ style.cards_container }>
         <h2>{`Resultado de álbuns de: ${name}`}</h2>
-        {songs.map((element, i) => (
-          <ul
-            key={ i }
-          >
-            <Link
-              data-testid={ `link-to-album-${element.collectionId}` }
-              to={ `/album/${element.collectionId}` }
+        <ul
+          className={ style.cards }
+        >
+          {songs.map((element, i) => (
+            <li
+              key={ i }
             >
-              <img alt={ element.collectionName } src={ element.artworkUrl100 } />
-              <h3>{element.collectionName}</h3>
-              <h5>{element.artistName}</h5>
-            </Link>
-          </ul>))}
-      </>) : <span>Nenhum álbum foi encontrado</span>;
+              <Link
+                data-testid={ `link-to-album-${element.collectionId}` }
+                to={ `/album/${element.collectionId}` }
+              >
+                <img alt={ element.collectionName } src={ element.artworkUrl100 } />
+                <h3>{element.collectionName}</h3>
+                {/* <h5>{element.artistName}</h5> */}
+              </Link>
+            </li>))}
+        </ul>
+      </div>) : <span>Nenhum álbum foi encontrado</span>;
 
     return (
       <div
