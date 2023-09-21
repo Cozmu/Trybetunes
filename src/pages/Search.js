@@ -35,6 +35,7 @@ class Search extends React.Component {
       artistName: '',
     });
     const request = await searchAlbumsAPI(artistName);
+    console.log(request);
     this.setState({
       loading: false,
       songs: request,
@@ -54,7 +55,9 @@ class Search extends React.Component {
               data-testid={ `link-to-album-${element.collectionId}` }
               to={ `/album/${element.collectionId}` }
             >
-              {JSON.stringify(element)}
+              <img alt={ element.collectionName } src={ element.artworkUrl100 } />
+              <h3>{element.collectionName}</h3>
+              <h5>{element.artistName}</h5>
             </Link>
           </ul>))}
       </>) : <span>Nenhum álbum foi encontrado</span>;
@@ -65,13 +68,14 @@ class Search extends React.Component {
         data-testid="page-search"
       >
         <Header />
-        <section>
-          <form>
+        <main>
+          <form className={ style.form_container }>
             <label htmlFor="search-artist">
               <input
                 id="search-artist"
                 type="text"
                 name="artistName"
+                placeholder="NOME DO ARTISTA"
                 value={ artistName }
                 data-testid="search-artist-input"
                 onChange={ this.onInputChange }
@@ -83,11 +87,11 @@ class Search extends React.Component {
               onClick={ this.searchArtist }
               disabled={ licenseBtn }
             >
-              Pesquisar
+              PESQUISAR
             </button>
           </form>
           { loading ? <Carregando /> : checkExistence}
-        </section>
+        </main>
 
       </div>
     );

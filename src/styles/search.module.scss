@@ -3,4 +3,47 @@
 .main_container {
   display: flex;
   height: 100vh;
+  width: 100%;
+  main {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+  }
+}
+
+.form_container {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background: linear-gradient(158deg, $primary-bg 30%, $secondary-bg 100%);
+  label {
+    width: 40%;
+  }
+  input {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    background-color: #f8f8f85b;
+    outline: none;
+  }
+  input::placeholder {
+    color: white
+  }
+  button {
+    height: 40px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    background-color: $secondary-bg;
+    color: white;
+    cursor: pointer;
+    width: 120px;
+    font-weight: 600;
+  }
 }

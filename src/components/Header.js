@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { GrSearch } from 'react-icons/gr';
+import { AiOutlineSearch, AiOutlineStar } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 import style from '../styles/header.module.scss';
@@ -35,13 +36,15 @@ class Header extends React.Component {
               <img alt="logo" className={ style.logo } src={ logo } />
               <nav>
                 <NavLink data-testid="link-to-search" to="/search">
-                  <GrSearch />
+                  <AiOutlineSearch className={ style.icons } />
                   Pesquisa
                 </NavLink>
                 <NavLink data-testid="link-to-favorites" to="/favorites">
+                  <AiOutlineStar className={ style.icons } />
                   Favoritas
                 </NavLink>
                 <NavLink data-testid="link-to-profile" to="/profile">
+                  <CgProfile className={ style.icons } />
                   Perfil
                 </NavLink>
               </nav>

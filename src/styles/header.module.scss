@@ -7,20 +7,31 @@
   justify-content: space-around;
   padding: 10px;
   .logo {
-    width: 100px;
+    width: 150px;
     margin: 0 auto;
   }
   nav {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    align-items: center;
     a {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 5px;
-      width: 100%;
+      justify-content: left;
+      gap: 20px;
+      width: 25%;
+      margin: auto;
+      text-decoration: none;
+      color: #9DB2BF;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    .icons {
+      height: 25px;
+      width: 25px;
+    }
+    a:hover {
+      color: black;
     }
   }
 
@@ -28,10 +39,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     img {
       border-radius: 100%;
-      width: 80px;
+      height: 60px;
+      width: 60px;
     }
   }
   
