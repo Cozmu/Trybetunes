@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Carregando from './Carregando';
+import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import style from '../styles/musicCard.module.scss';
 
@@ -73,16 +74,17 @@ class MusicCard extends React.Component {
           .
         </audio>
         <label
-          htmlFor="favorita"
+          htmlFor={ trackId }
         >
           <input
             data-testid={ `checkbox-music-${trackId}` }
             name="favorita"
-            id="favorita"
+            id={ trackId }
             type="checkbox"
             onClick={ this.favoriteSong }
             checked={ checked }
           />
+          { checked ? <BsSuitHeartFill /> : <BsSuitHeart /> }
         </label>
         {/* )} */}
       </div>

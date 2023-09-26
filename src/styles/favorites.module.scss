@@ -1,0 +1,34 @@
+@import 'colors.scss';
+
+.favotire_container {
+  display: flex;
+  height: 100vh;
+}
+
+.main_container {
+  background-color: $tertiary-bg;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  div {
+    margin: 0;
+  }
+  .title_main {
+    color: $tertiary-bg;
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    background: linear-gradient(158deg, $primary-bg 30%, $secondary-bg 100%);
+  }
+  .content_main {
+    padding: 10px;
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+  }
+}
