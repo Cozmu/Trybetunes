@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { IoPersonCircleOutline } from 'react-icons/io5';
 import Header from '../components/Header';
 import Carregando from '../components/Carregando';
 import { getUser, updateUser } from '../services/userAPI';
+import style from '../styles/profileEdit.module.scss';
 
 class ProfileEdit extends React.Component {
   state = {
@@ -35,8 +37,6 @@ class ProfileEdit extends React.Component {
 
   verification = () => {
     const { nome, email, descricao } = this.state;
-    // const Regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-    // const validationEmail = Regex.test(email);
     const filledFields = !!nome && !!email && !!descricao;
     this.setState({
       toggle: !filledFields,
@@ -54,21 +54,22 @@ class ProfileEdit extends React.Component {
   render() {
     const { isLoading, img, nome, email, descricao, toggle } = this.state;
     return (
-      <div data-testid="page-profile-edit">
+      <div
+        className={ style.main_container }
+        data-testid="page-profile-edit"
+      >
         <Header />
-        {isLoading ? <Carregando />
-          : (
-            <fomr>
-              <label htmlFor="input-image">
-                Foto:
-                <input
-                  id="input-image"
-                  name="img"
-                  data-testid="edit-input-image"
-                  onChange={ this.handleChange }
-                  value={ img }
-                />
-              </label>
+        {isLoading ? (
+          <section className={ style.loading_container }>
+            <Carregando />
+          </section>
+        ) : (
+          <main>
+            <section className={ style.img_container }>
+              {img ? <img src={ img } alt="" />
+                : <IoPersonCircleOutline className={ style.profile_not_found } />}
+            </section>
+            <form>
               <label htmlFor="input-name">
                 Nome:
                 <input
@@ -79,6 +80,17 @@ class ProfileEdit extends React.Component {
                   value={ nome }
                 />
               </label>
+              <label htmlFor="input-image">
+                Foto:
+                <input
+                  id="input-image"
+                  name="img"
+                  data-testid="edit-input-image"
+                  onChange={ this.handleChange }
+                  value={ img }
+                />
+              </label>
+
               <label htmlFor="input-email">
                 E-mail:
                 <input
@@ -91,7 +103,7 @@ class ProfileEdit extends React.Component {
               </label>
               <label htmlFor="input-description">
                 Descrição:
-                <input
+                <textarea
                   id="input-description"
                   name="descricao"
                   data-testid="edit-input-description"
@@ -105,9 +117,11 @@ class ProfileEdit extends React.Component {
                 disabled={ toggle }
                 onClick={ this.salvar }
               >
-                Salvar
+                SALVAR
               </button>
-            </fomr>)}
+            </form>
+          </main>
+        )}
       </div>
     );
   }

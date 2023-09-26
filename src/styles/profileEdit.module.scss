@@ -1,0 +1,90 @@
+@import 'colors.scss';
+
+.main_container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  .loading_container {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $tertiary-bg;
+  }
+  main {
+    width: 75%;
+    background-color: $tertiary-bg;
+    .img_container {
+      background: linear-gradient(158deg, $primary-bg 30%, $secondary-bg 100%);
+      width: 100%;
+      height: 30%;
+      position: relative;
+      img {
+        position: absolute;
+        bottom: -170px;
+        margin-left: 40px;
+        width: 340px;
+        height: 340px;
+        border-radius: 100%;
+      }
+      .profile_not_found {
+        position: absolute;
+        bottom: -170px;
+        margin-left: 40px;
+        width: 340px;
+        height: 340px;
+        background-color: #e2e0e0;
+        border-radius: 100%;
+        color: #95b0c0;      
+      }
+    }
+    form {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      margin: 20px auto;
+      gap: 15px;
+      label {
+        display: flex;
+        flex-direction: column;
+      }
+      input {
+        padding: 5px;
+        height: 40px;
+        width: 100%;
+        background-color: $tertiary-bg;
+        border: none;
+        border-bottom: 1px solid black;
+        transition: background-color 0.3s;
+      }
+      input:focus {
+        outline: none;
+        background-color: white;
+      }
+      button {
+        width: 152px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        background-color: $primary-bg;
+        font-weight: 600;
+        color: $tertiary-bg;
+        cursor: pointer;
+      }
+      textarea {
+        padding: 5px;
+        height: 200px;
+        resize: vertical;
+        width: 100%;
+        background-color: $tertiary-bg;
+        border: none;
+        border-bottom: 1px solid black;
+        transition: background-color 0.3s;
+      }
+      textarea:focus {
+        outline: none;
+        background-color: white;
+      }
+    }
+  }
+}
