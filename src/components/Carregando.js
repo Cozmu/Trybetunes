@@ -1,8 +1,9 @@
 import React from 'react';
+import style from '../styles/loading.module.scss';
 
 class Carregando extends React.Component {
   render() {
-    return <p>Carregando...</p>;
+    return <div className={ style.loading_container } />;
   }
 }
 

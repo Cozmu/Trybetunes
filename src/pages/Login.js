@@ -37,7 +37,7 @@ class Login extends React.Component {
     const { license, usuario, loading } = this.state;
     return (
       <div className={ style.main_container } data-testid="page-login">
-        {loading ? <Carregando />
+        {loading ? <section className={ style.loading_container }><Carregando /></section>
           : (
             <form>
               <img alt="logo" src={ logo } />

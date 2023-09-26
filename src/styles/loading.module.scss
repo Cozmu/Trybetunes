@@ -1,0 +1,25 @@
+@import 'colors.scss';
+
+.loading_container {
+  display: block;
+  animation: is-rotating 1s infinite;
+  text-align: center;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: $secondary-bg;
+  height: 50px;
+  width: 50px;
+}
+
+@keyframes is-rotating {
+  to {
+      transform: rotate(1turn);
+  }
+}
+
+@media screen and ( max-width : 768px ) {
+
+  .header{
+      display: none;
+  }
+}

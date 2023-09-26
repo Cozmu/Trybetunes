@@ -12,6 +12,7 @@ class Search extends React.Component {
     loading: false,
     songs: [],
     name: '',
+    firstRequest: false,
   };
 
   enableBtn = () => {
@@ -28,6 +29,7 @@ class Search extends React.Component {
   };
 
   searchArtist = async () => {
+    console.log('entrou');
     const { artistName } = this.state;
     this.setState({
       name: artistName,
@@ -39,11 +41,17 @@ class Search extends React.Component {
     this.setState({
       loading: false,
       songs: request,
-    });
+      firstRequest: true,
+    }, () => this.enableBtn());
   };
 
   render() {
-    const { licenseBtn, artistName, loading, songs, name } = this.state;
+    const { licenseBtn, artistName, loading, songs, name, firstRequest } = this.state;
+    const checkfirstRequest = firstRequest && (
+      <div className={ style.temporary_container }>
+        <span>Nenhum álbum foi encontrado</span>
+      </div>
+    );
     const checkExistence = (songs.length > 0) ? (
       <div className={ style.cards_container }>
         <h2>{`Resultado de álbuns de: ${name}`}</h2>
@@ -64,7 +72,7 @@ class Search extends React.Component {
               </Link>
             </li>))}
         </ul>
-      </div>) : <span>Nenhum álbum foi encontrado</span>;
+      </div>) : checkfirstRequest;
 
     return (
       <div
@@ -94,7 +102,12 @@ class Search extends React.Component {
               PESQUISAR
             </button>
           </form>
-          { loading ? <Carregando /> : checkExistence}
+          { loading
+            ? (
+              <div className={ style.temporary_container }>
+                <Carregando />
+              </div>
+            ) : checkExistence }
         </main>
 
       </div>

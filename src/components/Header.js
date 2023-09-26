@@ -31,22 +31,22 @@ class Header extends React.Component {
         className={ style.header_container }
         data-testid="header-component"
       >
-        {loading ? <Carregando />
+        {loading ? <section><Carregando /></section>
           : (
             <>
               <img alt="logo" className={ style.logo } src={ logo } />
               <nav>
                 <NavLink data-testid="link-to-search" to="/search">
                   <AiOutlineSearch className={ style.icons } />
-                  Pesquisa
+                  <p>Pesquisar</p>
                 </NavLink>
                 <NavLink data-testid="link-to-favorites" to="/favorites">
                   <AiOutlineStar className={ style.icons } />
-                  Favoritas
+                  <p>Favoritas</p>
                 </NavLink>
                 <NavLink data-testid="link-to-profile" to="/profile">
                   <IoPersonCircle className={ style.icons } />
-                  Perfil
+                  <p>Perfil</p>
                 </NavLink>
               </nav>
               <section>

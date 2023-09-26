@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carregando from './Carregando';
+// import Carregando from './Carregando';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import style from '../styles/musicCard.module.scss';
 
 class MusicCard extends React.Component {
   state = {
-    isloading: false,
+    // isloading: false,
     checked: false,
     favorite: [],
   };
@@ -35,20 +36,20 @@ class MusicCard extends React.Component {
     const prop = this.props;
     const { favorite } = this.state;
     if (this.verifcaLocalStorage(prop.trackId)) {
-      this.setState({ isloading: true });
+      // this.setState({ isloading: true });
       await removeSong(prop);
       const novoFavorito = favorite.filter((e) => e.trackId !== prop.trackId);
       this.setState({
         favorite: novoFavorito,
-        isloading: false,
+        // isloading: false,
         checked: false,
       });
     } else {
-      this.setState({ isloading: true });
+      // this.setState({ isloading: true });
       await addSong(prop);
       this.setState((prev) => ({
         favorite: [...prev.favorite, prop],
-        isloading: false,
+        // isloading: false,
         checked: true,
       }));
     }
@@ -56,37 +57,34 @@ class MusicCard extends React.Component {
 
   render() {
     const { trackName, trackId, previewUrl } = this.props;
-    const { isloading, checked } = this.state;
+    const { checked } = this.state;
     return (
-      <div>
-        {isloading ? <Carregando /> : (
-          <section>
-            <p>{trackName}</p>
-            <audio
-              data-testid="audio-component"
-              src={ previewUrl }
-              controls
-            >
-              <track kind="captions" />
-              O seu navegador não suporta o elemento
-              <code>audio</code>
-              .
-            </audio>
-            <label
-              htmlFor="favorita"
-            >
-              Favorita
-              <input
-                data-testid={ `checkbox-music-${trackId}` }
-                name="favorita"
-                id="favorita"
-                type="checkbox"
-                onClick={ this.favoriteSong }
-                checked={ checked }
-              />
-            </label>
-          </section>
-        )}
+      <div className={ style.card }>
+        {/* {isloading ? <Carregando /> : ( */}
+        <p>{trackName}</p>
+        <audio
+          data-testid="audio-component"
+          src={ previewUrl }
+          controls
+        >
+          <track kind="captions" />
+          O seu navegador não suporta o elemento
+          <code>audio</code>
+          .
+        </audio>
+        <label
+          htmlFor="favorita"
+        >
+          <input
+            data-testid={ `checkbox-music-${trackId}` }
+            name="favorita"
+            id="favorita"
+            type="checkbox"
+            onClick={ this.favoriteSong }
+            checked={ checked }
+          />
+        </label>
+        {/* )} */}
       </div>
     );
   }

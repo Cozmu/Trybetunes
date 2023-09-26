@@ -1,0 +1,53 @@
+@import 'colors.scss';
+
+.main_container {
+  display: flex;
+  main {
+    width: 75%;
+    background-color: $tertiary-bg;
+    height: 100vh;
+    .presentation_container {
+      background: linear-gradient(158deg, $primary-bg 26%, $secondary-bg 100%);
+      display: flex;
+      width: 100%;
+      height: 30%;
+      .album_and_artist {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: end;
+        width: 40%;
+        padding: 20px;
+        color: $tertiary-bg;
+      }
+      .cape_container {
+        position: relative;
+        width: 40%;
+        img {
+          position: absolute;
+          right: 0;
+          bottom: -150px;
+          border-radius: 12px;
+          width: 300px;
+          height: 300px;
+        }
+      }
+    }
+    .cards_container {
+      height: 70%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $secondary-bg; 
+  border-radius: 5px; 
+}

@@ -23,9 +23,11 @@
       }
 
     }
-    span {
-      margin-top: 300px;
-      text-align: center;
+    .temporary_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70%;
     }
   }
 }
@@ -64,6 +66,10 @@
     cursor: pointer;
     width: 120px;
     font-weight: 600;
+  }
+
+  button:disabled {
+    opacity: 0.5;
   }
 }
 
