@@ -1,0 +1,68 @@
+@import 'colors.scss';
+
+.loading_container {
+  background-color: $tertiary-bg;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main_container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  main {
+    background-color: $tertiary-bg;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    .photo_container {
+      background: linear-gradient(158deg, $primary-bg 30%, $secondary-bg 100%);
+      width: 100%;
+      position: relative;
+      height: 30%;
+      img {
+        position: absolute;
+        bottom: -170px;
+        margin-left: 40px;
+        width: 340px;
+        height: 340px;
+        border-radius: 100%;
+      }
+      .profile_not_found {
+        position: absolute;
+        bottom: -170px;
+        margin-left: 40px;
+        width: 340px;
+        height: 340px;
+        background-color: #e2e0e0;
+        border-radius: 100%;
+        color: #95b0c0;      
+      }
+    }
+    .informations_container {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px auto;
+      h3 {
+        margin-bottom: 3px;
+      }
+      .redirect_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        background-color: $primary-bg;
+        border-radius: 20px;
+        width: 150px;
+        height: 40px;
+        margin-top: 60px;
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
+}
