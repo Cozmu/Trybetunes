@@ -106,6 +106,7 @@ class ProfileEdit extends React.Component {
                 <textarea
                   id="input-description"
                   name="descricao"
+                  maxLength="500"
                   data-testid="edit-input-description"
                   onChange={ this.handleChange }
                   value={ descricao }

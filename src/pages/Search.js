@@ -68,7 +68,6 @@ class Search extends React.Component {
               >
                 <img alt={ element.collectionName } src={ element.artworkUrl100 } />
                 <h3>{element.collectionName}</h3>
-                {/* <h5>{element.artistName}</h5> */}
               </Link>
             </li>))}
         </ul>

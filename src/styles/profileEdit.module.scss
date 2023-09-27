@@ -21,18 +21,18 @@
       position: relative;
       img {
         position: absolute;
-        bottom: -170px;
+        bottom: -125px;
         margin-left: 40px;
-        width: 340px;
-        height: 340px;
+        width: 250px;
+        height: 250px;
         border-radius: 100%;
       }
       .profile_not_found {
         position: absolute;
-        bottom: -170px;
+        bottom: -125px;
         margin-left: 40px;
-        width: 340px;
-        height: 340px;
+        width: 250px;
+        height: 250px;
         background-color: #e2e0e0;
         border-radius: 100%;
         color: #95b0c0;      
@@ -73,8 +73,8 @@
       }
       textarea {
         padding: 5px;
-        height: 200px;
-        resize: vertical;
+        height: 100px;
+        resize: none;
         width: 100%;
         background-color: $tertiary-bg;
         border: none;
